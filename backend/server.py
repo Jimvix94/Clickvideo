@@ -342,7 +342,7 @@ async def moderate_video(video_id: str, action: dict, admin: bool = Depends(get_
 @api_router.get("/admin/users")
 async def admin_get_users(admin: bool = Depends(get_admin_user)):
     users = await db.users.find().to_list(1000)
-    return [{k: v for k, v in user.items() if k != "password"} for user in users]
+    return [{k: v for k, v in user.items() if k not in ["password", "_id"]} for user in users]
 
 @api_router.post("/admin/users/{user_id}/ban")
 async def ban_user(user_id: str, ban_data: dict, admin: bool = Depends(get_admin_user)):
