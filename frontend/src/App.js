@@ -1103,7 +1103,7 @@ const AppRouter = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
       {currentPage === 'home' && <Home />}
       {currentPage === 'upload' && <Upload />}
       {currentPage === 'login' && <Login />}
