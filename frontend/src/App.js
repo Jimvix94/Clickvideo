@@ -79,9 +79,8 @@ const useAuth = () => {
 };
 
 // Components
-const Navbar = () => {
+const Navbar = ({ currentPage, setCurrentPage }) => {
   const { user, isAdmin, logout } = useAuth();
-  const [currentPage, setCurrentPage] = useState('home');
 
   return (
     <nav className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4 shadow-lg">
