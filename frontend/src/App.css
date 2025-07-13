@@ -1,38 +1,307 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
-    text-align: center;
+  text-align: left;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Video hover effects */
+.video-card {
+  transition: all 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Button hover effects */
+.btn-primary {
+  @apply bg-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors duration-200;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors duration-200;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors duration-200;
+}
+
+/* Form styles */
+.form-input {
+  @apply w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200;
+}
+
+.form-textarea {
+  @apply w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none transition-colors duration-200;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden;
+}
+
+.card-hover {
+  @apply hover:shadow-lg transition-shadow duration-200;
+}
+
+/* Text truncation utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* Loading animations */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-purple {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-blue {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Admin panel specific styles */
+.admin-nav {
+  @apply bg-gray-800 text-white;
+}
+
+.admin-card {
+  @apply bg-white rounded-lg shadow-md p-6;
+}
+
+.admin-button {
+  @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+}
+
+.admin-button-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.admin-button-danger {
+  @apply bg-red-600 text-white hover:bg-red-700;
+}
+
+.admin-button-success {
+  @apply bg-green-600 text-white hover:bg-green-700;
+}
+
+/* Status badges */
+.status-badge {
+  @apply px-2 py-1 text-xs rounded-full font-medium;
+}
+
+.status-approved {
+  @apply bg-green-100 text-green-800;
+}
+
+.status-rejected {
+  @apply bg-red-100 text-red-800;
+}
+
+.status-pending {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.status-banned {
+  @apply bg-red-100 text-red-800;
+}
+
+.status-active {
+  @apply bg-green-100 text-green-800;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none;
+  }
+  
+  .mobile-full {
+    width: 100%;
+  }
+  
+  .mobile-stack {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  }
+  
+  .mobile-text-sm {
+    font-size: 0.875rem;
+  }
 }
 
-.App-link {
-    color: #61dafb;
+/* Video player styles */
+video {
+  max-width: 100%;
+  height: auto;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Comment section styles */
+.comment-section {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.comment-item {
+  @apply bg-gray-50 p-4 rounded-lg border-l-4 border-purple-500;
+}
+
+/* Like button animation */
+.like-button {
+  transition: all 0.2s ease;
+}
+
+.like-button:hover {
+  transform: scale(1.1);
+}
+
+.like-button.liked {
+  animation: heartbeat 0.6s ease-in-out;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.3); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.3); }
+  70% { transform: scale(1); }
+}
+
+/* Share button styles */
+.share-button {
+  @apply bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200;
+}
+
+/* Upload progress styles */
+.upload-progress {
+  @apply w-full bg-gray-200 rounded-full h-2;
+}
+
+.upload-progress-bar {
+  @apply bg-purple-600 h-2 rounded-full transition-all duration-300;
+}
+
+/* Error and success messages */
+.alert {
+  @apply p-4 rounded-lg mb-4;
+}
+
+.alert-success {
+  @apply bg-green-100 border border-green-400 text-green-700;
+}
+
+.alert-error {
+  @apply bg-red-100 border border-red-400 text-red-700;
+}
+
+.alert-warning {
+  @apply bg-yellow-100 border border-yellow-400 text-yellow-700;
+}
+
+.alert-info {
+  @apply bg-blue-100 border border-blue-400 text-blue-700;
+}
+
+/* Navigation improvements */
+.nav-link {
+  @apply px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-purple-500;
+}
+
+.nav-link.active {
+  @apply bg-white text-purple-600;
+}
+
+/* Footer styles */
+.footer {
+  @apply bg-gray-800 text-white py-8 mt-16;
+}
+
+/* Tooltip styles */
+.tooltip {
+  @apply absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 invisible transition-opacity duration-300;
+}
+
+.tooltip.show {
+  @apply opacity-100 visible;
 }
